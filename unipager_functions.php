@@ -97,5 +97,5 @@
 		// if(lstPage(2, 1)==true) {echo 'pass';} else {echo 'fail';} // pass
 		// echo curPage(checkRequest('page'), 1); // pass
 		// pageToggle(checkRequest('page'), 'left', 26, 5, '?'); // pass
-		// uniPager(checkRequest('page'), 5, 26, 5, 14, 12); pass	
+		uniPager(checkRequest('page'), 5, 26, 5, 14, 12); pass	
 ?>
