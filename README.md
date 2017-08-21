@@ -1,4 +1,6 @@
-#UniversalPager
+Universal Pager
+
+[![Build Status](https://travis-ci.org/Boogy07/universalpager.svg?branch=master)]
 
 A PHP based multi page navigation widget.
 
