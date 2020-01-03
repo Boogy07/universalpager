@@ -31,34 +31,33 @@
 		}
 		
 		function uniPager($pageNumber, $current_pageNumber, $totpages, $pager_threshold, $totalResults, $numRecords) { 
-			    $thecurpge = curPage($pageNumber, $current_pageNumber); // current page
-			    $prevpge = 1; // previous page
-			    $qurfront = "?"; // to reconstruct next and prev links
-			    //$pager_threshold = 49; // when to show pagination
-			    //$totalResults = $_SESSION['total-results'];
-			    //$numRecords = 12; // number of items to show per page
+			    $thecurpge = curPage($pageNumber, $current_pageNumber); /* current page */
+			    $prevpge = 1; /* previous page */
+			    $qurfront = "?"; /* to reconstruct next and prev links */
+			    /* $pager_threshold = 49; // when to show pagination */
+			    /* $totalResults = $_SESSION['total-results']; */
+			    /* $numRecords = 12; // number of items to show per page */
 			    $totpages = ceil($totalResults/$numRecords); //total pages
 
-				if($totalResults > $pager_threshold) {  
-					
-					if(checkRequest('search')) {
-						// without page
-						if( checkRequest('page')==false ) { $qurfront = $_SERVER['REQUEST_URI']."&";}
-						// with page
-						if( checkRequest('page')!=false ) { $urlparts = explode('&page', $_SERVER['REQUEST_URI'] ); $qurfront = $urlparts[0]."&";}
-					}
+				if($totalResults > $pager_threshold) {
+
+					/** without page **/
+					if( checkRequest('page')==false ) { $qurfront = $_SERVER['REQUEST_URI']."&";}
+					/** with page **/
+					if( checkRequest('page')!=false ) { $urlparts = explode('&page', $_SERVER['REQUEST_URI'] ); $qurfront = $urlparts[0]."&";}
+
 					
 					/* output pagination links */
 					echo '<div class="seapager curved">';
 					pageToggle('left', $totpages, $thecurpge, $qurfront, $pageNumber);
 					
-					   // PREVIOUS LINKS					   
+					   /** PREVIOUS LINKS **/				   
 					   if(frstPage($pageNumber, $current_pageNumber)==false) {
 					    $prevpge = $thecurpge-1;
 					    $prevpge_2 = $thecurpge-2;
 					    $prevpge_3 = $thecurpge-3;
 					    
-					    // to show start link we must check if we are more than 5 away from curpage
+					    /* to show start link we must check if we are more than 5 away from curpage */
 					    $sep=''; if($thecurpge>5) {$sep='... ';}
 					    if($thecurpge>=5) { $prevlink=$qurfront."page=1"; echo "<a href='$prevlink'>1</a>&nbsp;&nbsp;$sep";}
 					    
@@ -67,11 +66,11 @@
 					    if($prevpge>=1) { $prevlink=$qurfront."page=$prevpge"; echo "<a href='$prevlink'>$prevpge</a>&nbsp;&nbsp;";}
 					   }
 					   
-					   // CURRENT PAGE
+					   /** CURRENT PAGE **/
 					   $link=$qurfront."page=$thecurpge";
 					   echo "<a class='isel' href='$link'>$thecurpge</a>&nbsp;&nbsp;";				   				   
 					   
-					   // NEXT LINKS
+					   /** NEXT LINKS **/
 					   if(lstPage($pageNumber,$totpages)==false) {
 						   $nextpge = $thecurpge+1;
 						   $nextpge_2 = $thecurpge+2;
@@ -86,16 +85,16 @@
 					   }
 					   
                     pageToggle('right', $totpages, $thecurpge, $qurfront, $pageNumber);
-					//echo "<br />Total Page: $totpages / Current Page: $thecurpge";
+					/* echo "<br />Total Page: $totpages / Current Page: $thecurpge"; */
 					echo '</div>';
 				}
 		}
-		// END PAGINATION CODES
+		/** END PAGINATION CODES **/
 		
 		
-		// TESTS
-		// if(lstPage(2, 1)==true) {echo 'pass';} else {echo 'fail';} // pass
-		// echo curPage(checkRequest('page'), 1); // pass
-		// pageToggle(checkRequest('page'), 'left', 26, 5, '?'); // pass
-		uniPager(checkRequest('page'), 5, 26, 5, 14, 12); // pass	
+		/** TESTS **/
+		/* if(lstPage(2, 1)==true) {echo 'pass';} else {echo 'fail';} // pass */
+		/* echo curPage(checkRequest('page'), 1); // pass */
+		/* pageToggle(checkRequest('page'), 'left', 26, 5, '?'); // pass */
+		uniPager(checkRequest('page'), 5, 26, 5, 14, 12); /* pass */
 ?>
